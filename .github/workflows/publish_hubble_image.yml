@@ -52,6 +52,7 @@ jobs:
           context: .
           load: true
           tags: ${{ env.IMAGE_URI }}
+          push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
       
@@ -76,16 +77,3 @@ jobs:
 #           cache-from: type=gha
 #           cache-to: type=gha,mode=max
           
-      - name: Publish Docker images
-        run: |
-          pwd && ls -lh
-          export DOCKER_CLI_EXPERIMENTAL=enabled
-          docker version
-          docker build -t $IMAGE_URI .
-          docker images
-          docker run -itd $IMAGE_URI
-          sleep 15s
-          docker ps -a
-          sleep 15s
-          docker ps -a
-          docker push $IMAGE_URI
