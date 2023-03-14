@@ -46,6 +46,11 @@ jobs:
           ref: ${{ inputs.repository_branch }}
           fetch-depth: 2
           
+      - name: Package
+        run: |
+          cd hugegraph-hubble
+          mvn package -e -B -ntp -DskipTests -Dmaven.javadoc.skip=true
+          pwd && ls -lth
 #       - name: Build X86 Image
 #         uses: docker/build-push-action@v4
 #         with:
