@@ -55,6 +55,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
+          file: ./hugegraph-hubble/Dockerfile
           tags: ${{ env.IMAGE_URI }}
           push: true
           cache-from: type=gha
