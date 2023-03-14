@@ -46,19 +46,19 @@ jobs:
           ref: ${{ inputs.repository_branch }}
           fetch-depth: 2
           
-      - name: Package
-        run: |
-          cd hugegraph-hubble
-          mvn package -e -B -ntp -DskipTests -Dmaven.javadoc.skip=true
-          pwd && ls -lth
-#       - name: Build X86 Image
-#         uses: docker/build-push-action@v4
-#         with:
-#           context: .
-#           tags: ${{ env.IMAGE_URI }}
-#           push: true
-#           cache-from: type=gha
-#           cache-to: type=gha,mode=max
+#       - name: Package
+#         run: |
+#           cd hugegraph-hubble
+#           mvn package -e -B -ntp -DskipTests -Dmaven.javadoc.skip=true
+#           pwd && ls -lth
+      - name: Build X86 Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          tags: ${{ env.IMAGE_URI }}
+          push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       
 #       - name: Test X86 Image
 #         run: |
@@ -69,15 +69,5 @@ jobs:
 #           docker ps -a
 #           sleep 15s
 #           docker ps -a
-
-      - name: Build ARM & Push all
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./hugegraph-hubble/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ${{ env.IMAGE_URI }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+#
           
