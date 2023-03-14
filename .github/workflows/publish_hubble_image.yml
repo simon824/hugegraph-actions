@@ -46,33 +46,33 @@ jobs:
           ref: ${{ inputs.repository_branch }}
           fetch-depth: 2
           
-      - name: Build X86 Image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          tags: ${{ env.IMAGE_URI }}
-          push: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-      
-      - name: Test X86 Image
-        run: |
-          docker version
-          docker images
-          docker run -itd $IMAGE_URI
-          sleep 15s
-          docker ps -a
-          sleep 15s
-          docker ps -a
-
-#       - name: Build ARM & Push all
+#       - name: Build X86 Image
 #         uses: docker/build-push-action@v4
 #         with:
 #           context: .
-#           file: ./Dockerfile
-#           platforms: linux/amd64,linux/arm64
-#           push: true
 #           tags: ${{ env.IMAGE_URI }}
+#           push: true
 #           cache-from: type=gha
 #           cache-to: type=gha,mode=max
+      
+#       - name: Test X86 Image
+#         run: |
+#           docker version
+#           docker images
+#           docker run -itd $IMAGE_URI
+#           sleep 15s
+#           docker ps -a
+#           sleep 15s
+#           docker ps -a
+
+      - name: Build ARM & Push all
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./hugegraph-hubble/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ env.IMAGE_URI }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           
