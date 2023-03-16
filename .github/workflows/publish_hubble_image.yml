@@ -14,7 +14,7 @@ on:
         default: 'master'
       image_url:
         required: true
-        default: 'simon824/hugegraph-hubble'
+        default: 'hugegraph/hubble'
       tag:
         required: true
         default: 'test'
