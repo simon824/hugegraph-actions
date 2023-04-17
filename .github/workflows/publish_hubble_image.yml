@@ -8,7 +8,8 @@ on:
     inputs:
       repository_url:
         required: true
-        default: 'simon824/incubator-hugegraph-toolchain'
+#         default: 'simon824/incubator-hugegraph-toolchain'
+        default: 'apache/incubator-hugegraph-toolchain'
       repository_branch:
         required: true
         default: 'master'
@@ -17,7 +18,8 @@ on:
         default: 'hugegraph/hubble'
       tag:
         required: true
-        default: 'test'
+#         default: 'test'
+        default: 'latest'
 
 jobs:
   build:
